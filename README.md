@@ -4,7 +4,7 @@ This Python script fetches weather data from an external API and sends a notific
 
 ## Requirements
 
-- Python 3.x
+- Python 3.12.2
 - `requests` library (install via `pip install requests`)
 - `twilio` library (install via `pip install twilio`)
 - A Twilio account with a verified phone number
