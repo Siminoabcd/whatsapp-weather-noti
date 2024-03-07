@@ -41,3 +41,31 @@ def create_message(weather_info):
     message += f"\nSunrise: {weather_info['astro_sunrise']}, Sunset: {weather_info['astro_sunset']}."
     return message
 
+def main():
+
+    # Twilio credentials
+    account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+    auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+    twilio_phone_number = os.getenv('TWILIO_PHONE_NUMBER')
+    my_phone_number = os.getenv('YOUR_PHONE_NUMBER')
+    weather_api_url = os.getenv('WEATHER_API_URL')
+
+    # Fetch weather data
+    weather_data = fetch_weather_data(weather_api_url)
+
+    # Extract weather information
+    weather_info = extract_weather_info(weather_data)
+
+    # Create message
+    message = create_message(weather_info)
+
+    client = Client(account_sid, auth_token)
+
+    message = client.messages.create(
+    from_=twilio_phone_number,
+    body= message,
+    to=my_phone_number
+    )
+
+if __name__ == "__main__":
+    main()
