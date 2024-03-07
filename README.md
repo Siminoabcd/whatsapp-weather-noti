@@ -8,13 +8,7 @@ This Python script fetches weather data from an external API and sends a notific
 - `requests` library (install via `pip install requests`)
 - `twilio` library (install via `pip install twilio`)
 - A Twilio account with a verified phone number
-- Environment variables stored in a `.env` file containing Twilio and weather API credentials:
-
-TWILIO_ACCOUNT_SID=<Your Twilio account SID>
-TWILIO_AUTH_TOKEN=<Your Twilio auth token>
-TWILIO_PHONE_NUMBER=<Your Twilio phone number>
-YOUR_PHONE_NUMBER=<Your phone number>
-WEATHER_API_URL=<Weather API URL>
+- Environment variables stored in a `.env` file containing Twilio and weather API credentials
 
 
 ## Setup
@@ -23,7 +17,7 @@ WEATHER_API_URL=<Weather API URL>
 
 2. Install Python dependencies by running:
 
-pip install -r requirements.txt
+        pip install -r requirements.txt
 
 3. Create a `.env` file in the root directory of the project and add your Twilio and weather API credentials.
 
