@@ -34,3 +34,10 @@ def extract_weather_info(data):
         'astro_sunrise': astro.get('sunrise', 'N/A'),
         'astro_sunset': astro.get('sunset', 'N/A')
     }
+
+def create_message(weather_info):
+    message = f"Current weather in {weather_info['location_name']}: {weather_info['current_conditions_text']}. Temperature: {weather_info['current_temperature_c']}°C. Feels like: {weather_info['current_feels_like_c']}°C."
+    message += f"\nForecast for {weather_info['forecast_date']}: Max temperature: {weather_info['forecast_max_temp_c']}°C, Min temperature: {weather_info['forecast_min_temp_c']}°C, Chance of rain: {weather_info['forecast_chance_of_rain']}%, Forecast conditions: {weather_info['forecast_conditions_text']}."
+    message += f"\nSunrise: {weather_info['astro_sunrise']}, Sunset: {weather_info['astro_sunset']}."
+    return message
+
