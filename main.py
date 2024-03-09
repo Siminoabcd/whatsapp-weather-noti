@@ -2,6 +2,7 @@ import requests
 from twilio.rest import Client
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 # Load environment variables from .env file
 load_dotenv()
@@ -18,15 +19,18 @@ def extract_weather_info(data):
     forecast_day = data['forecast']['forecastday'][0]['day']
     astro = data['forecast']['forecastday'][0]['astro']
 
-    # Check if the 'date' key exists in forecast_day
-    forecast_date = forecast_day.get('date', 'N/A')
+    # Get today's date
+    today = datetime.today()
+
+    # Format today's date to DD.MM.YYYY format
+    formatted_date = today.strftime("%d.%m.%Y")
 
     return {
         'location_name': location['name'],
         'current_temperature_c': current['temp_c'],
         'current_conditions_text': current['condition']['text'],
         'current_feels_like_c': current['feelslike_c'],
-        'forecast_date': forecast_date,
+        'forecast_date': formatted_date,
         'forecast_max_temp_c': forecast_day.get('maxtemp_c', 'N/A'),
         'forecast_min_temp_c': forecast_day.get('mintemp_c', 'N/A'),
         'forecast_chance_of_rain': forecast_day.get('daily_chance_of_rain', 'N/A'),
@@ -39,6 +43,7 @@ def create_message(weather_info):
     message = f"Current weather in {weather_info['location_name']}: {weather_info['current_conditions_text']}. Temperature: {weather_info['current_temperature_c']}°C. Feels like: {weather_info['current_feels_like_c']}°C."
     message += f"\nForecast for {weather_info['forecast_date']}: Max temperature: {weather_info['forecast_max_temp_c']}°C, Min temperature: {weather_info['forecast_min_temp_c']}°C, Chance of rain: {weather_info['forecast_chance_of_rain']}%, Forecast conditions: {weather_info['forecast_conditions_text']}."
     message += f"\nSunrise: {weather_info['astro_sunrise']}, Sunset: {weather_info['astro_sunset']}."
+    print(message)
     return message
 
 def main():
