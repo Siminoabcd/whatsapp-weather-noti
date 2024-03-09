@@ -2,7 +2,7 @@ name: Run Python script daily
 
 on:
   schedule:
-    - cron: '30 5 * * *'
+    - cron: '40 8 * * *'
 
 jobs:
   run-script:
@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0  # Update to the latest version of actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
