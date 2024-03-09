@@ -2,7 +2,7 @@ name: Run Python script daily
 
 on:
   schedule:
-    - cron: '22 5 * * *'
+    - cron: '22 6 * * *'
 
 jobs:
   run-script:
