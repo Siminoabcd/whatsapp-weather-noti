@@ -2,7 +2,7 @@ name: Run Python script daily
 
 on:
   schedule:
-    - cron: '24 7 * * *'
+    - cron: '35 7 * * *'
 
 jobs:
   run-script:
@@ -12,22 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js 20
-        uses: actions/setup-node@v2
-        with:
-          node-version: '20'
-
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.12.2'
 
       - name: Install dependencies
-        run: |
-          npm install -g npm@latest # Update npm to the latest version
-          npm install -g yarn # Install yarn package manager
-          yarn global add typescript # Install TypeScript globally
-          pip install requests twilio python-dotenv
+        run: pip install requests twilio python-dotenv
 
       - name: Run Python script
         run: python main.py
